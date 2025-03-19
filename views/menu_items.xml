@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_root_hr_hospital" name="HR Hospital" web_icon="static/description/hospital_icon.png">
+        <menuitem id="menu_patient" name="Patients" action="action_patient" sequence="1"/>
+        <menuitem id="menu_doctor" name="Doctors" action="action_doctor" sequence="2"/>
+        <menuitem id="menu_hospital" name="Hospital" sequence="3">
+            <menuitem id="menu_schedule" name="Schedule" action="action_schedule" sequence="1"/>
+            <menuitem id="menu_visit" name="Visits" action="action_visit" sequence="2"/>
+            <menuitem id="menu_diagnosis" name="Diagnosis" action="action_diagnosis" sequence="3"/>
+            <menuitem id="menu_disease_directory" name="Disease Directory" action="action_disease_directory" sequence="4"/>
+            <menuitem id="menu_research_category" name="Lab Tests Category" action="action_research_category" sequence="5"/>
+            <menuitem id="menu_research" name="Lab Tests" action="action_research" sequence="6"/>
+        </menuitem>
+    </menuitem>
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="speciality_cardio" model="hospital.doctor.speciality">
+            <field name="name">Cardiology</field>
+        </record>
+
+        <record id="speciality_neuro" model="hospital.doctor.speciality">
+            <field name="name">Neurology</field>
+        </record>
+
+        <record id="speciality_pediatrics" model="hospital.doctor.speciality">
+            <field name="name">Pediatrics</field>
+        </record>
+
+        <record id="speciality_dermatology" model="hospital.doctor.speciality">
+            <field name="name">Dermatology</field>
+        </record>
+
+        <record id="speciality_orthopedics" model="hospital.doctor.speciality">
+            <field name="name">Orthopedics</field>
+        </record>
+
+        <record id="speciality_gynecology" model="hospital.doctor.speciality">
+            <field name="name">Gynecology</field>
+        </record>
+
+        <record id="speciality_therapist" model="hospital.doctor.speciality">
+            <field name="name">Therapist</field>
+        </record>
+
+        <record id="speciality_internal_medicine" model="hospital.doctor.speciality">
+            <field name="name">Internal Medicine</field>
+        </record>
+
+        <record id="speciality_psychiatry" model="hospital.doctor.speciality">
+            <field name="name">Psychiatry</field>
+        </record>
+
+        <record id="speciality_radiology" model="hospital.doctor.speciality">
+            <field name="name">Radiology</field>
+        </record>
+    </data>
+</odoo>

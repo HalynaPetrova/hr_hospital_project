@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="patient_1" model="hospital.patient">
+            <field name="first_name">Alice</field>
+            <field name="last_name">Anderson</field>
+            <field name="phone">1111111111</field>
+            <field name="email">a.anderson@example.com</field>
+            <field name="gender">female</field>
+            <field name="date_of_birth">1990-01-01</field>
+            <field name="passport">AB1234567</field>
+            <field name="contact_person_id" ref="demo_contact_person_1"/>
+        </record>
+
+        <record id="patient_2" model="hospital.patient">
+            <field name="first_name">David</field>
+            <field name="last_name">Smith</field>
+            <field name="phone">2222222222</field>
+            <field name="email">d.smith@example.com</field>
+            <field name="gender">male</field>
+            <field name="date_of_birth">1985-02-14</field>
+            <field name="passport">XY9876543</field>
+            <field name="contact_person_id" ref="demo_contact_person_2"/>
+        </record>
+
+        <record id="patient_3" model="hospital.patient">
+            <field name="first_name">Emily</field>
+            <field name="last_name">Johnson</field>
+            <field name="phone">3333333333</field>
+            <field name="email">e.johnson@example.com</field>
+            <field name="gender">female</field>
+            <field name="date_of_birth">1988-03-23</field>
+            <field name="passport">GH4567890</field>
+            <field name="contact_person_id" ref="demo_contact_person_3"/>
+        </record>
+
+        <record id="patient_4" model="hospital.patient">
+            <field name="first_name">Michael</field>
+            <field name="last_name">Williams</field>
+            <field name="phone">4444444444</field>
+            <field name="email">m.williams@example.com</field>
+            <field name="gender">male</field>
+            <field name="date_of_birth">1992-04-12</field>
+            <field name="passport">IJ1234567</field>
+            <field name="contact_person_id" ref="demo_contact_person_4"/>
+        </record>
+
+        <record id="patient_5" model="hospital.patient">
+            <field name="first_name">Sophia</field>
+            <field name="last_name">Jones</field>
+            <field name="phone">5555555555</field>
+            <field name="email">s.jones@example.com</field>
+            <field name="gender">female</field>
+            <field name="date_of_birth">1995-05-30</field>
+            <field name="passport">KL7890123</field>
+            <field name="contact_person_id" ref="demo_contact_person_5"/>
+        </record>
+
+        <record id="patient_6" model="hospital.patient">
+            <field name="first_name">Daniel</field>
+            <field name="last_name">Garcia</field>
+            <field name="phone">6666666666</field>
+            <field name="email">d.garcia@example.com</field>
+            <field name="gender">male</field>
+            <field name="date_of_birth">1991-06-19</field>
+            <field name="passport">MN3456789</field>
+            <field name="contact_person_id" ref="demo_contact_person_6"/>
+        </record>
+
+        <record id="patient_7" model="hospital.patient">
+            <field name="first_name">Isabella</field>
+            <field name="last_name">Martinez</field>
+            <field name="phone">7777777777</field>
+            <field name="email">i.martinez@example.com</field>
+            <field name="gender">female</field>
+            <field name="date_of_birth">1987-07-25</field>
+            <field name="passport">OP1234567</field>
+            <field name="contact_person_id" ref="demo_contact_person_7"/>
+        </record>
+
+        <record id="patient_8" model="hospital.patient">
+            <field name="first_name">Matthew</field>
+            <field name="last_name">Hernandez</field>
+            <field name="phone">8888888888</field>
+            <field name="email">m.hernandez@example.com</field>
+            <field name="gender">male</field>
+            <field name="date_of_birth">1984-08-10</field>
+            <field name="passport">QR4567890</field>
+            <field name="contact_person_id" ref="demo_contact_person_8"/>
+        </record>
+
+        <record id="patient_9" model="hospital.patient">
+            <field name="first_name">Ava</field>
+            <field name="last_name">Lopez</field>
+            <field name="phone">9999999999</field>
+            <field name="email">a.lopez@example.com</field>
+            <field name="gender">female</field>
+            <field name="date_of_birth">1993-09-29</field>
+            <field name="passport">ST1234567</field>
+            <field name="contact_person_id" ref="demo_contact_person_9"/>
+        </record>
+
+        <record id="patient_10" model="hospital.patient">
+            <field name="first_name">Lucas</field>
+            <field name="last_name">Wilson</field>
+            <field name="phone">1010101010</field>
+            <field name="email">l.wilson@example.com</field>
+            <field name="gender">male</field>
+            <field name="date_of_birth">1989-10-15</field>
+            <field name="passport">UV9876543</field>
+            <field name="contact_person_id" ref="demo_contact_person_10"/>
+        </record>
+    </data>
+</odoo>

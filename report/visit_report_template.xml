@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <template id="visit_report_template">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2 style="text-align:center; margin-bottom: 20px;">Visit Report</h2>
+
+                    <div class="section" style="margin-bottom: 20px;">
+                        <table style="width: 100%; border-spacing: 0; border-collapse: collapse;">
+                            <tr>
+                                <td style="padding: 5px; width: 30%;"><strong>Patient:</strong></td>
+                                <td style="padding: 5px;"><t t-esc="o.patient_id.full_name"/></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px;"><strong>Doctor:</strong></td>
+                                <td style="padding: 5px;"><t t-esc="o.doctor_id.full_name"/></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px;"><strong>Visit Type:</strong></td>
+                                <td style="padding: 5px;"><t t-esc="o.visit_type"/></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px;"><strong>Visit Date:</strong></td>
+                                <td style="padding: 5px;"><t t-esc="o.visit_date"/></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px;"><strong>Visit Time:</strong></td>
+                                <td style="padding: 5px;"><t t-esc="o.visit_time"/></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="section" style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; font-weight: bold;">Complaints</h3>
+                        <p style="border-left: 3px solid #3498db; padding-left: 10px; font-style: italic;">
+                            <t t-esc="o.complaints"/>
+                        </p>
+                    </div>
+
+                    <div class="section" style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; font-weight: bold;">Tests Assigned</h3>
+                        <table style="width: 100%; border-spacing: 0; border-collapse: collapse;">
+                            <thead>
+                                <tr>
+                                    <th style="padding: 5px; width: 30%;"><strong>Test Name</strong></th>
+                                    <th style="padding: 5px; width: 30%;"><strong>Test Date</strong></th>
+                                    <th style="padding: 5px; width: 40%;"><strong>Conclusion</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.tests_ids" t-as="test">
+                                    <tr>
+                                        <td style="padding: 5px;"><t t-esc="test.test_id.name"/></td>
+                                        <td style="padding: 5px;"><t t-esc="test.test_date"/></td>
+                                        <td style="padding: 5px;"><t t-esc="test.conclusion"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="section" style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; font-weight: bold;">Diagnosis</h3>
+                        <table style="width: 100%; border-spacing: 0; border-collapse: collapse;">
+                            <t t-foreach="o.diagnosis_ids" t-as="diagnosis">
+                                <tr>
+                                    <td style="padding: 5px; width: 30%;"><strong>Diagnosis:</strong></td>
+                                    <td style="padding: 5px;"><t t-esc="diagnosis.disease_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px;"><strong>Diagnosis Date:</strong></td>
+                                    <td style="padding: 5px;"><t t-esc="diagnosis.diagnosis_date"/></td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+
+                    <div class="section" style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; font-weight: bold;">Recommendation</h3>
+                        <p style="border-left: 3px solid #3498db; padding-left: 10px; font-style: italic;">
+                            <t t-esc="o.recommendation"/>
+                        </p>
+                    </div>
+
+                </div>
+            </t>
+        </template>
+
+        <template id="visit_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="hr_hospital.visit_report_template"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

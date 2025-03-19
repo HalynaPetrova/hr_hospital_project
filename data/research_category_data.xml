@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="lab_test_blood" model="hospital.research.category">
+            <field name="name">Blood Tests</field>
+        </record>
+        <record id="lab_test_imaging" model="hospital.research.category">
+            <field name="name">Imaging Tests</field>
+        </record>
+        <record id="lab_test_microbiology" model="hospital.research.category">
+            <field name="name">Microbiology Tests</field>
+        </record>
+
+        <record id="lab_test_complete_blood_count" model="hospital.research.category">
+            <field name="name">Complete Blood Count (CBC)</field>
+            <field name="parent_id" ref="lab_test_blood"/>
+        </record>
+        <record id="lab_test_blood_glucose" model="hospital.research.category">
+            <field name="name">Blood Glucose Test</field>
+            <field name="parent_id" ref="lab_test_blood"/>
+        </record>
+
+        <record id="lab_test_xray" model="hospital.research.category">
+            <field name="name">X-Ray</field>
+            <field name="parent_id" ref="lab_test_imaging"/>
+        </record>
+        <record id="lab_test_mri" model="hospital.research.category">
+            <field name="name">Magnetic Resonance Imaging (MRI)</field>
+            <field name="parent_id" ref="lab_test_imaging"/>
+        </record>
+
+        <record id="lab_test_culture" model="hospital.research.category">
+            <field name="name">Bacterial Culture Test</field>
+            <field name="parent_id" ref="lab_test_microbiology"/>
+        </record>
+        <record id="lab_test_viral_load" model="hospital.research.category">
+            <field name="name">Viral Load Test</field>
+            <field name="parent_id" ref="lab_test_microbiology"/>
+        </record>
+    </data>
+</odoo>

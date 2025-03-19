@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="hospital_doctor_tree_view" model="ir.ui.view">
+            <field name="name">hospital.doctor.tree</field>
+            <field name="model">hospital.doctor</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="full_name"/>
+                    <field name="speciality_id"/>
+                    <field name="is_intern"/>
+                    <field name="mentor_id"/>
+                    <field name="patient_count"/>
+                    <field name="country_id"/>
+                    <field name="city"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hospital_doctor_form_view" model="ir.ui.view">
+            <field name="name">hospital.doctor.form</field>
+            <field name="model">hospital.doctor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="first_name"/>
+                            <field name="last_name"/>
+                            <field name="speciality_id"/>
+                            <field name="working_hours"/>
+                            <field name="available_days"/>
+                            <field name="is_intern" widget="boolean_toggle"/>
+                            <field name="mentor_id" invisible="is_intern == False"
+                                   placeholder="Doctor who mentors the intern"/>
+                        </group>
+                        <group>
+                            <field name="image_1024" widget="image" nolabel="1" style="width: 150px; height: 150px;"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Additional Info">
+                            <group>
+                                <group>
+                                    <field name="experience"/>
+                                    <field name="education"/>
+                                    <field name="certificates"/>
+                                </group>
+                                <group>
+                                    <field name="phone" widget="phone"/>
+                                    <field name="email" widget="email"/>
+                                    <label for="address" string="Address"/>
+                                    <div class="o_address_format">
+                                        <field name="country_id" class="o_address_country" placeholder="Country"/>
+                                        <field name="city" placeholder="City" class="o_address_city"/>
+                                        <field name="address" placeholder="Address..." class="o_address_street"/>
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Patients">
+                            <field name="patient_ids">
+                                <tree>
+                                    <field name="full_name"/>
+                                    <field name="gender"/>
+                                    <field name="age"/>
+                                    <field name="country_id"/>
+                                    <field name="city"/>
+                                    <field name="phone"/>
+                                    <field name="email"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Schedule">
+                            <field name="schedule_ids" readonly="1">
+                                <tree>
+                                    <field name="patient_id"/>
+                                    <field name="schedule_date"/>
+                                    <field name="schedule_time"/>
+                                    <field name="day_of_week"/>
+                                    <field name="state"
+                                           decoration-danger="state == 'cancelled'"
+                                           decoration-success="state == 'completed'"
+                                           decoration-primary="state == 'scheduled'"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page>
+                            <field name="visit_ids" readonly="1">
+                                <tree>
+                                    <field name="patient_id"/>
+                                    <field name="visit_date"/>
+                                    <field name="visit_time"/>
+                                    <field name="visit_type"/>
+                                    <field name="state" decoration-primary="state == 'started'"
+                                           decoration-warning="state == 'waiting_for_results'"
+                                           decoration-info="state == 'waiting_for_diagnosis'"
+                                           decoration-success="state == 'completed'"
+                                           decoration-danger="state == 'cancelled'"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_doctor" model="ir.actions.act_window">
+            <field name="name">Doctor</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hospital.doctor</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="hospital_doctor_tree_view"/>
+        </record>
+
+        <record id="action_diagnosis_report_wizard" model="ir.actions.server">
+            <field name="name">Diagnosis Report Wizard</field>
+            <field name="model_id" ref="model_hospital_diagnosis"/>
+            <field name="state">code</field>
+            <field name="binding_model_id" ref="model_hospital_doctor"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="binding_type">report</field>
+            <field name="code">
+                action = {
+                'type': 'ir.actions.act_window',
+                'name': 'Disease Report',
+                'res_model': 'hospital.diagnosis.report.wizard',
+                'view_mode': 'form',
+                'target': 'new',
+                }
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="sample_type_blood" model="hospital.sample.type">
+            <field name="name">Blood</field>
+        </record>
+        <record id="sample_type_urine" model="hospital.sample.type">
+            <field name="name">Urine</field>
+        </record>
+        <record id="sample_type_saliva" model="hospital.sample.type">
+            <field name="name">Saliva</field>
+        </record>
+        <record id="sample_type_tissue" model="hospital.sample.type">
+            <field name="name">Tissue</field>
+        </record>
+        <record id="sample_type_swab" model="hospital.sample.type">
+            <field name="name">Swab</field>
+        </record>
+    </data>
+</odoo>

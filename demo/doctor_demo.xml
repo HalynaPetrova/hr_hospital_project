@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="doctor_1" model="hospital.doctor">
+            <field name="first_name">John</field>
+            <field name="last_name">Smith</field>
+            <field name="phone">5678901234</field>
+            <field name="email">john.smith@example.com</field>
+            <field name="gender">male</field>
+        </record>
+
+        <record id="doctor_2" model="hospital.doctor">
+            <field name="first_name">Sophia</field>
+            <field name="last_name">Miller</field>
+            <field name="phone">5678905678</field>
+            <field name="email">sophia.miller@example.com</field>
+            <field name="gender">female</field>
+        </record>
+
+        <record id="doctor_3" model="hospital.doctor">
+            <field name="first_name">Michael</field>
+            <field name="last_name">Johnson</field>
+            <field name="phone">5678909012</field>
+            <field name="email">michael.johnson@example.com</field>
+            <field name="gender">male</field>
+        </record>
+
+        <record id="doctor_4" model="hospital.doctor">
+            <field name="first_name">Emily</field>
+            <field name="last_name">Davis</field>
+            <field name="phone">5678903456</field>
+            <field name="email">emily.davis@example.com</field>
+            <field name="gender">female</field>
+        </record>
+
+        <record id="doctor_5" model="hospital.doctor">
+            <field name="first_name">David</field>
+            <field name="last_name">Brown</field>
+            <field name="phone">5678907890</field>
+            <field name="email">david.brown@example.com</field>
+            <field name="gender">male</field>
+        </record>
+
+        <record id="doctor_6" model="hospital.doctor">
+            <field name="first_name">Olivia</field>
+            <field name="last_name">Wilson</field>
+            <field name="phone">5678902345</field>
+            <field name="email">olivia.wilson@example.com</field>
+            <field name="gender">female</field>
+        </record>
+
+        <record id="doctor_7" model="hospital.doctor">
+            <field name="first_name">James</field>
+            <field name="last_name">Taylor</field>
+            <field name="phone">5678906789</field>
+            <field name="email">james.taylor@example.com</field>
+            <field name="gender">male</field>
+        </record>
+
+        <record id="doctor_8" model="hospital.doctor">
+            <field name="first_name">Emma</field>
+            <field name="last_name">Thomas</field>
+            <field name="phone">5678901230</field>
+            <field name="email">emma.thomas@example.com</field>
+            <field name="gender">female</field>
+        </record>
+
+        <record id="doctor_9" model="hospital.doctor">
+            <field name="first_name">William</field>
+            <field name="last_name">Anderson</field>
+            <field name="phone">5678904567</field>
+            <field name="email">william.anderson@example.com</field>
+            <field name="gender">male</field>
+        </record>
+
+        <record id="doctor_10" model="hospital.doctor">
+            <field name="first_name">Isabella</field>
+            <field name="last_name">Martinez</field>
+            <field name="phone">5678908912</field>
+            <field name="email">isabella.martinez@example.com</field>
+            <field name="gender">female</field>
+        </record>
+    </data>
+</odoo>

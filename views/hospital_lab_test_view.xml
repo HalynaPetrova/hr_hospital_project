@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_hospital_research_tree" model="ir.ui.view">
+            <field name="name">hospital.research.tree</field>
+            <field name="model">hospital.research</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="test_date"/>
+                    <field name="patient_id"/>
+                    <field name="test_id"/>
+                    <field name="test_category"/>
+                    <field name="doctor_id"/>
+                    <field name="visit_id"/>
+                    <field name="status" decoration-danger="status == 'cancelled'"
+                           decoration-success="status == 'completed'"
+                           decoration-warning="status == 'pending'"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hospital_research_form" model="ir.ui.view">
+            <field name="name">hospital.research.form</field>
+            <field name="model">hospital.research</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_completed_test" type="object" string="Complete"
+                                class="btn btn-success"/>
+                        <button name="action_cancel_test" type="object" string="Cancel"
+                                class="btn btn-danger"/>
+                    </header>
+                    <br/>
+                    <group>
+                        <field name="status" decoration-danger="status == 'cancelled'"
+                               decoration-success="status == 'completed'"
+                               decoration-warning="status == 'pending'"
+                               readonly="1"/>
+                        <field name="test_date"/>
+                        <field name="test_id"/>
+                        <field name="test_category"/>
+                        <field name="sample_type" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                        <separator/>
+                        <field name="patient_id" readonly="1"/>
+                        <field name="doctor_id" readonly="1"/>
+                        <field name="visit_id" readonly="1"/>
+                        <field name="conclusion"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_research" model="ir.actions.act_window">
+            <field name="name">Patient Research</field>
+            <field name="res_model">hospital.research</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="view_hospital_research_tree"/>
+        </record>
+
+    </data>
+</odoo>

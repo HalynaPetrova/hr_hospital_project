@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_hospital_research_category_tree" model="ir.ui.view">
+            <field name="name">hospital.research.category.tree</field>
+            <field name="model">hospital.research.category</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="parent_id"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hospital_research_category_form" model="ir.ui.view">
+            <field name="name">hospital.research.category.form</field>
+            <field name="model">hospital.research.category</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="parent_id"/>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_research_category" model="ir.actions.act_window">
+            <field name="name">Research Categories</field>
+            <field name="res_model">hospital.research.category</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hospital_schedule_tree_view" model="ir.ui.view">
+            <field name="name">hospital.schedule.tree</field>
+            <field name="model">hospital.schedule</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="doctor_id"/>
+                    <field name="patient_id"/>
+                    <field name="schedule_date"/>
+                    <field name="schedule_time"/>
+                    <field name="state" decoration-danger="state == 'cancelled'"
+                           decoration-success="state == 'completed'"
+                           decoration-primary="state == 'scheduled'"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hospital_schedule_form_view" model="ir.ui.view">
+            <field name="name">hospital.schedule.form</field>
+            <field name="model">hospital.schedule</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_create_visit" type="object" string="Create Visit" class="btn btn-primary"/>
+                        <button name="action_schedule_cancel" type="object" string="Cancel Appointment"
+                                class="btn btn-danger"/>
+                    </header>
+                    <group>
+                        <field name="state" decoration-danger="state == 'cancelled'"
+                               decoration-success="state == 'completed'"
+                               decoration-primary="state == 'scheduled'"/>
+                        <field name="doctor_id"/>
+                        <field name="patient_id"/>
+                        <field name="schedule_date"/>
+                        <field name="schedule_time"/>
+                        <field name="day_of_week"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="hospital_schedule_calendar_view" model="ir.ui.view">
+            <field name="name">hospital.calendar</field>
+            <field name="model">hospital.schedule</field>
+            <field name="arch" type="xml">
+                <calendar date_start="schedule_date" string="Schedule" mode="week" event_open_popup="true">
+                    <field name="doctor_id"/>
+                    <field name="patient_id"/>
+                    <field name="schedule_time"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record id="action_schedule" model="ir.actions.act_window">
+            <field name="name">Doctor Schedule</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hospital.schedule</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="view_id" ref="hospital_schedule_tree_view"/>
+        </record>
+
+        <record id="ir_cron_auto_complete_schedule" model="ir.cron">
+            <field name="name">Auto Complete Schedules</field>
+            <field name="model_id" ref="model_hospital_schedule"/>
+            <field name="state">code</field>
+            <field name="code">model.auto_complete_schedules()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active" eval="True"/>
+            <field name="doall" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

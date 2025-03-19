@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+
+        <record id="symptom_fever" model="hospital.symptom">
+            <field name="name">Fever</field>
+        </record>
+
+        <record id="symptom_cough" model="hospital.symptom">
+            <field name="name">Cough</field>
+        </record>
+
+        <record id="symptom_fatigue" model="hospital.symptom">
+            <field name="name">Fatigue</field>
+        </record>
+
+        <record id="symptom_headache" model="hospital.symptom">
+            <field name="name">Headache</field>
+        </record>
+
+        <record id="symptom_nausea" model="hospital.symptom">
+            <field name="name">Nausea</field>
+        </record>
+
+        <record id="symptom_shortness_of_breath" model="hospital.symptom">
+            <field name="name">Shortness of Breath</field>
+        </record>
+
+        <record id="symptom_sore_throat" model="hospital.symptom">
+            <field name="name">Sore Throat</field>
+        </record>
+
+    </data>
+</odoo>

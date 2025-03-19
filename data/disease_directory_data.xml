@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <record id="disease_cardiological" model="hospital.disease.directory">
+            <field name="name">Cardiological Diseases</field>
+        </record>
+        <record id="disease_neurological" model="hospital.disease.directory">
+            <field name="name">Neurological Disorders</field>
+        </record>
+        <record id="disease_infectious" model="hospital.disease.directory">
+            <field name="name">Infectious Diseases</field>
+        </record>
+
+        <record id="disease_hypertension" model="hospital.disease.directory">
+            <field name="name">Hypertension</field>
+            <field name="parent_id" ref="disease_cardiological"/>
+        </record>
+        <record id="disease_ischemic_heart" model="hospital.disease.directory">
+            <field name="name">Ischemic Heart Disease</field>
+            <field name="parent_id" ref="disease_cardiological"/>
+        </record>
+
+        <record id="disease_neurological_hypertension" model="hospital.disease.directory">
+            <field name="name">Hypertension</field>
+            <field name="parent_id" ref="disease_neurological"/>
+        </record>
+        <record id="disease_migraine" model="hospital.disease.directory">
+            <field name="name">Migraine</field>
+            <field name="parent_id" ref="disease_neurological"/>
+        </record>
+
+        <record id="disease_influenza" model="hospital.disease.directory">
+            <field name="name">Influenza</field>
+            <field name="parent_id" ref="disease_infectious"/>
+        </record>
+        <record id="disease_pneumonia" model="hospital.disease.directory">
+            <field name="name">Pneumonia</field>
+            <field name="parent_id" ref="disease_infectious"/>
+        </record>
+    </data>
+</odoo>

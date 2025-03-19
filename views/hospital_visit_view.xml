@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hospital_visit_tree_view" model="ir.ui.view">
+            <field name="name">hospital.visit.tree</field>
+            <field name="model">hospital.visit</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="visit_code"/>
+                    <field name="doctor_id"/>
+                    <field name="patient_id"/>
+                    <field name="visit_date"/>
+                    <field name="visit_time"/>
+                    <field name="visit_type"/>
+                    <field name="state" decoration-warning="state == 'waiting_for_results'"
+                           decoration-primary="state == 'return_visit_scheduled'"
+                           decoration-info="state == 'waiting_for_diagnosis'"
+                           decoration-success="state == 'completed'"
+                           decoration-danger="state == 'cancelled'"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hospital_visit_form_view" model="ir.ui.view">
+            <field name="name">hospital.visit.form</field>
+            <field name="model">hospital.visit</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_assign_test" type="object" string="Assign Lab Test" class="btn btn-warning"/>
+                        <button name="action_follow_up_scheduled" type="object" string="Schedule Follow-up Visit" class="btn btn-primary"/>
+                        <button name="action_confirm_diagnosis" type="object" string="Confirm Diagnosis" class="btn btn-info"/>
+                        <button name="action_completed_visit" type="object" string="Completed" class="btn btn-success"/>
+                        <button name="action_visit_cancel" type="object" string="Cancel" class="btn btn-danger"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <group>
+                        <field name="visit_code"/>
+                        <field name="doctor_id" readonly="1"/>
+                        <field name="patient_id" readonly="1"/>
+                        <field name="visit_date" readonly="1"/>
+                        <field name="visit_time" readonly="1"/>
+                        <field name="visit_type"/>
+                        <field name="recommendation"/>
+                        <field name="is_doctor_intern" invisible="1"/>
+                        <field name="mentor_note" invisible="is_doctor_intern == False" placeholder="Since the doctor is an intern, their mentor must leave a comment"/>
+                    </group>
+                    <notebook>
+                        <page string="Health Complaints">
+                            <group>
+                                <field name="symptom_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                <field name="complaints"/>
+                            </group>
+                        </page>
+                        <page string="Lab Tests">
+                            <field name="tests_ids" readonly="1">
+                                <tree>
+                                    <field name="test_date"/>
+                                    <field name="test_id"/>
+                                    <field name="test_category"/>
+                                    <field name="sample_type" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                    <field name="status" decoration-danger="status == 'cancelled'"
+                                           decoration-success="status == 'completed'"
+                                           decoration-warning="status == 'pending'"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Diagnosis">
+                            <field name="diagnosis_ids" readonly="1">
+                                <tree>
+                                    <field name="diagnosis_date"/>
+                                    <field name="disease_id"/>
+                                    <field name="disease_type"/>
+                                    <field name="recommendation"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_visit" model="ir.actions.act_window">
+            <field name="name">Doctor Visit</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hospital.visit</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="hospital_visit_tree_view"/>
+        </record>
+
+    </data>
+</odoo>

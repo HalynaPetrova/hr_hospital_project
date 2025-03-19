@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="hospital_patient_tree_view" model="ir.ui.view">
+            <field name="name">hospital.patient.tree</field>
+            <field name="model">hospital.patient</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="full_name"/>
+                    <field name="gender"/>
+                    <field name="age"/>
+                    <field name="date_of_birth"/>
+                    <field name="doctor_id"/>
+                    <field name="country_id"/>
+                    <field name="city"/>
+                    <field name="contact_person_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hospital_patient_form_view" model="ir.ui.view">
+            <field name="name">hospital.patient.form</field>
+            <field name="model">hospital.patient</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="first_name"/>
+                            <field name="last_name"/>
+                            <field name="gender"/>
+                            <field name="date_of_birth"/>
+                            <field name="age"/>
+                        </group>
+                        <group>
+                            <field name="image_1024" widget="image" nolabel="1" style="width: 150px; height: 150px;"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Additional Info">
+                            <group>
+                                <group>
+                                    <field name="allergy_ids" widget="many2many_tags"
+                                           options="{'color_field': 'color'}"/>
+                                    <field name="passport" password="True"/>
+                                    <field name="marital_status"/>
+                                    <field name="children"/>
+                                    <field name="insurance" widget="boolean_toggle" string="Availability of Insurance"/>
+                                    <field name="insurance_company_id" placeholder="Name of the Insurance Company"
+                                           invisible="insurance == False"/>
+                                    <field name="policy_number" placeholder="Enter Insurance Policy Number"
+                                           invisible="insurance == False"/>
+                                </group>
+                                <group>
+                                    <field name="phone" widget="phone"/>
+                                    <field name="email" widget="email"/>
+                                    <label for="address" string="Address"/>
+                                    <div class="o_address_format">
+                                        <field name="country_id" class="o_address_country" placeholder="Country"/>
+                                        <field name="city" placeholder="City" class="o_address_city"/>
+                                        <field name="address" placeholder="Address..." class="o_address_street"/>
+                                    </div>
+                                    <label for="contact_person_id" string="Contact Person"/>
+                                    <div class="o_contact_person_format">
+                                        <field name="contact_person_id" class="o_contact_person"
+                                               placeholder="Select Person"/>
+                                        <field name="relation_to_patient"
+                                               placeholder="Relation to Patient"/>
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Personal doctor">
+                            <group style="width: 1000px;">
+                                <group style="width: 170px;">
+                                    <field name="doctor_image_1024" widget="image" nolabel="1"
+                                           style="width: 150px; height: 150px;"/>
+                                </group>
+
+                                <group style="width: 500px;">
+                                    <field name="doctor_id"/>
+                                    <field name="doctor_speciality_id"/>
+                                    <field name="doctor_phone"/>
+                                    <field name="doctor_email"/>
+                                </group>
+
+                                <group style="width: 300px;">
+                                    <button name="action_create_schedule" type="object" class="btn btn-primary"
+                                            style="width: 300px; height: 300px;">
+                                        Schedule a Visit
+                                    </button>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Lab Tests">
+                            <field name="lab_tests_ids" readonly="1">
+                                <tree>
+                                    <field name="doctor_id"/>
+                                    <field name="test_id"/>
+                                    <field name="test_category"/>
+                                    <field name="sample_type" widget="many2many_tags"
+                                           options="{'color_field': 'color'}"/>
+                                    <field name="test_date"/>
+                                    <field name="status"
+                                           decoration-success="status == 'completed'"
+                                           decoration-danger="status == 'cancelled'"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Appointments">
+                            <field name="schedule_ids" readonly="1">
+                                <tree>
+                                    <field name="doctor_id"/>
+                                    <field name="schedule_date"/>
+                                    <field name="schedule_time"/>
+                                    <field name="day_of_week"/>
+                                    <field name="state"
+                                           decoration-danger="state == 'cancelled'"
+                                           decoration-success="state == 'completed'"
+                                           decoration-primary="state == 'scheduled'"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Visits">
+                            <field name="visit_ids" readonly="1">
+                                <tree>
+                                    <field name="doctor_id"/>
+                                    <field name="visit_date"/>
+                                    <field name="visit_time"/>
+                                    <field name="visit_type"/>
+                                    <field name="state" decoration-primary="state == 'started'"
+                                           decoration-warning="state == 'waiting_for_results'"
+                                           decoration-info="state == 'waiting_for_diagnosis'"
+                                           decoration-success="state == 'completed'"
+                                           decoration-danger="state == 'cancelled'"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Medical Records">
+                            <field name="diagnosis_ids" readonly="1">
+                                <tree>
+                                    <field name="doctor_id"/>
+                                    <field name="diagnosis_date"/>
+                                    <field name="disease_id"/>
+                                    <field name="disease_type"/>
+                                    <field name="recommendation"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_patient" model="ir.actions.act_window">
+            <field name="name">Patient</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hospital.patient</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="hospital_patient_tree_view"/>
+        </record>
+
+        <record id="action_change_doctor" model="ir.actions.server">
+            <field name="name">Change Doctor</field>
+            <field name="model_id" ref="model_hospital_patient"/>
+            <field name="state">code</field>
+            <field name="binding_model_id" ref="model_hospital_patient"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="code">
+                action = {
+                'type': 'ir.actions.act_window',
+                'name': 'Change Doctor Wizard',
+                'res_model': 'hospital.change.doctor.wizard',
+                'view_mode': 'form',
+                'target': 'new',
+                }
+            </field>
+        </record>
+
+    </data>
+</odoo>
